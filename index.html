@@ -14,21 +14,20 @@
 </body>
 <script type="text/babel">
 	const root = document.getElementById("root");
-	function onClick() {
-		console.log("im Click");
+	let counter = 0;
+	function countUp() {
+		counter = counter + 1;
+		render();
 	}
-	function Title() {
-		return <h3 id="title" onMouseEnter={()=>console.log("mouse Enter")}> Hello Im a title </h3>;
+	function render() {
+		ReactDOM.render(<Container/>,root);
+	}
+	function Container() {
+		return (<div>
+			<h3>Total Clicks: {counter}</h3>
+			<button onClick={countUp}>Click me</button>
+		</div>);
 	};
-	const Button = () => (
-		<button onClick={()=>onClick()}>Click me</button>
-	);
-	const Container = (
-		<div>
-			<Title/>
-			<Button/>
-		</div>
-	);
-	ReactDOM.render(Container,root);
+	render();
 </script>
 </html>
