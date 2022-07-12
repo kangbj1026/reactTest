@@ -13,8 +13,19 @@
 </body>
 <script>
 	const root = document.getElementById("root");
-	const span = React.createElement("span",{id:"is-Span",style:{color:"red"}},"Hello I'm a span");
-
-	ReactDOM.render(span,root);
+	function onClick() {
+		console.log("im Click");
+	}
+	const h3 = React.createElement(
+		"h3",
+		{id:"title", onMouseEnter:()=>console.log("mouse enter")}
+		,"Hello I'm a span");
+	const btn = React.createElement(
+		"button",
+		{onClick:()=>onClick()},
+		"Click me"
+	)
+	const container = React.createElement("div",null,[h3,btn]);
+	ReactDOM.render(container,root);
 </script>
 </html>
