@@ -4,22 +4,17 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-	<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+	<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+	<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 	<title>React</title>
 </head>
 <body>
-	<span>Total Clicks: 0</span>
-	<button id="btn">Click me</button>
+	<div id="root"></div>
 </body>
 <script>
-	let counter = 0;
-	const button = document.getElementById("btn");
-	const span = document.querySelector("span");
-	function handleClick() {
-		counter = counter + 1;
-		span.innerText = `Total Clicks: ${counter}`;
-	}
-	button.addEventListener("click", handleClick);
+	const root = document.getElementById("root");
+	const span = React.createElement("span",{id:"is-Span",style:{color:"red"}},"Hello I'm a span");
+
+	ReactDOM.render(span,root);
 </script>
 </html>
