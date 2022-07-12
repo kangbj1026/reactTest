@@ -6,26 +6,22 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
 	<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+	<script src="https://unpkg.com/@babel/standalone@7.18.8/babel.min.js"></script>
 	<title>React</title>
 </head>
 <body>
 	<div id="root"></div>
 </body>
-<script>
+<script type="text/babel">
 	const root = document.getElementById("root");
 	function onClick() {
 		console.log("im Click");
 	}
-	const h3 = React.createElement(
-		"h3",
-		{id:"title", onMouseEnter:()=>console.log("mouse enter")}
-		,"Hello I'm a span");
-	const btn = React.createElement(
-		"button",
-		{onClick:()=>onClick()},
-		"Click me"
-	)
-	const container = React.createElement("div",null,[h3,btn]);
+	const Title = <h3 id="title" onMouseEnter={()=>console.log("mouse Enter")}> Hello Im a title </h3>;
+	const Button = () => {
+		return <button onClick={onClick}>Click me</button>;
+	}
+	const container = React.createElement("div",null,[Title,<Button/>]);
 	ReactDOM.render(container,root);
 </script>
 </html>
