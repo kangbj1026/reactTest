@@ -15,15 +15,14 @@
 <script type="text/babel">
 	function App() {
 		const [counter, setCounter] = React.useState(0);
-		const onClick = () => {
-			setCounter((current) => current + 1);
-		}
-		const [minutes, setMinutes] = React.useState(0);
-		const onChange = (e) => {
-			setMinutes(e.target.value);
-		}
-		const reSet = () => {
-			setMinutes(0);
+		const onClick = () => setCounter((current) => current + 1);
+		const [amount, setAmount] = React.useState(0);
+		const onChange = (e) => setAmount(e.target.value);
+		const reSet = () => setAmount(0);
+		const [flipped, setFlipped] = React.useState(false);
+		const onFlip = () => {
+			reSet();
+			setFlipped((current) => !current);
 		}
 		return (
 		<div>
@@ -35,13 +34,14 @@
 			<div>
 				<h1 className="hi">Super Converter</h1>
 				<label htmlFor="minutes">Minutes</label>
-				<input id="minutes" placeholder="Minutes" type="number" onChange={onChange} value={minutes}/>
+				<input id="minutes" placeholder="Minutes" type="number" onChange={onChange} value={flipped ? amount*60 : amount} disabled={flipped === true}/>
 			</div>
 			<div>
 				<label htmlFor="hours">Hours</label>
-				<input id="hours" placeholder="Hours" type="number" onChange={onChange} value={Math.round(minutes/60)} disabled />
+				<input id="hours" placeholder="Hours" type="number" onChange={onChange} value={flipped ? amount : Math.round(amount/60)} disabled={flipped === false} />
 			</div>
 			<button onClick={reSet}>Reset</button>
+			<button onClick={onFlip}>Flipped</button>
 		</div>
 		);
 	};
