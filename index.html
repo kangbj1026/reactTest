@@ -18,15 +18,27 @@
 		const onClick = () => {
 			setCounter((current) => current + 1);
 		}
+		const [minutes, setMinutes] = React.useState();
+		const onChange = (e) => {
+			setMinutes(e.target.value);
+		}
 		return (
 		<div>
 			<h3>Total Clicks: {counter}</h3>
 			<button onClick={onClick}>Click me</button>
-		</div>);
+			<hr/>
+			<h1>Super Converter</h1>
+			<label for="minutes">Minutes</label>
+			<input id="minutes" placeholder="Minutes" type="text" onChange={onChange} value={minutes}/>
+			<label for="hours">Hours</label>
+			<input id="hours" placeholder="Hours" type="text" onChange={onChange} value={minutes}/>
+		</div>
+		);
 	};
 	function render() {
 		const root = document.getElementById("root");
 		ReactDOM.render(<App/>,root);
+		<hr/>
 	}
 	render();
 </script>
