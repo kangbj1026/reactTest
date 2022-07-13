@@ -55,7 +55,8 @@
 	function KmToMiles() {
 		return <h3>KM 2 M</h3>;
 	};
-	function Btn({text,fontSize = 22}) {
+	// props 파라미터를 통하여 조회 가능, 객체 형태로 전달
+	function Btn({text, fontSize = 22}) {
 		return <div>
 			<button
 			style={{
@@ -68,9 +69,10 @@
 		}}>{text}</button>
 			</div>
 	}
+	// propTypes 전달받은 데이터의 유효성을 검증하기 위해서 다양한 유효성 검사기(Validator)
 	Btn.propTypes = {
-		text: PropTypes.string.isRequired,
-		fontSize: PropTypes.number,
+		text: PropTypes.string.isRequired, //
+		fontSize: PropTypes.number, //
 	}
 	function App() {
 		// const [index, setIndex] = React.useState("0");
@@ -91,7 +93,7 @@
 			{index === "0" ?  <MinutesToHours/> : null}
 			{index === "1" ? <KmToMiles/> : null*/ }
 			<Btn text="Save Changes" fontSize={18}/>
-			<Btn text="Continue" />
+			<Btn text={"Continue"} />
 		</div>
 		);
 	};
