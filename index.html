@@ -4,8 +4,8 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-	<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+	<script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+	<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
 	<script src="https://unpkg.com/@babel/standalone@7.18.8/babel.min.js"></script>
 	<title>React</title>
 </head>
@@ -18,28 +18,34 @@
 		const onClick = () => {
 			setCounter((current) => current + 1);
 		}
-		const [minutes, setMinutes] = React.useState();
+		const [minutes, setMinutes] = React.useState(0);
 		const onChange = (e) => {
 			setMinutes(e.target.value);
 		}
+		const reSet = () => {
+			setMinutes(0);
+		}
 		return (
 		<div>
-			<h3>Total Clicks: {counter}</h3>
-			<button onClick={onClick}>Click me</button>
+			<div>
+				<h3>Total Clicks: {counter}</h3>
+				<button onClick={onClick}>Click me</button>
+			</div>
 			<hr/>
-			<h1>Super Converter</h1>
-			<label for="minutes">Minutes</label>
-			<input id="minutes" placeholder="Minutes" type="text" onChange={onChange} value={minutes}/>
-			<label for="hours">Hours</label>
-			<input id="hours" placeholder="Hours" type="text" onChange={onChange} value={minutes}/>
+			<div>
+				<h1 className="hi">Super Converter</h1>
+				<label htmlFor="minutes">Minutes</label>
+				<input id="minutes" placeholder="Minutes" type="number" onChange={onChange} value={minutes}/>
+			</div>
+			<div>
+				<label htmlFor="hours">Hours</label>
+				<input id="hours" placeholder="Hours" type="number" onChange={onChange} value={Math.round(minutes/60)} disabled />
+			</div>
+			<button onClick={reSet}>Reset</button>
 		</div>
 		);
 	};
-	function render() {
-		const root = document.getElementById("root");
-		ReactDOM.render(<App/>,root);
-		<hr/>
-	}
-	render();
+	const root = document.getElementById("root");
+	ReactDOM.render(<App />,root);
 </script>
 </html>
